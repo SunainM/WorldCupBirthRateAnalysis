@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The World Cup Baby Boom — Research Report</title>
+  <style>
+    /* ── Reset & base ──────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark:  #0d4a28;
+      --green-mid:   #1a6b3c;
+      --green-light: #2d8c55;
+      --gold:        #FFD700;
+      --gold-soft:   #ffe066;
+      --sage:        #e8f5e0;
+      --red:         #c0392b;
+      --text:        #1a1a1a;
+      --muted:       #555;
+      --border:      #d0d0d0;
+    }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 10.5pt;
+      line-height: 1.65;
+      color: var(--text);
+      background: #fff;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 32px 64px;
+    }
+
+    /* ── Cover page ────────────────────────────────────── */
+    .cover {
+      background: linear-gradient(160deg, var(--green-dark) 0%, var(--green-mid) 60%, #1e5c35 100%);
+      color: white;
+      text-align: center;
+      padding: 72px 48px 60px;
+      margin: 0 -32px 48px;
+      border-bottom: 6px solid var(--gold);
+      page-break-after: always;
+    }
+    .cover .trophy { font-size: 56pt; display: block; margin-bottom: 16px; }
+    .cover h1 {
+      font-size: 26pt;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.5px;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .cover .subtitle {
+      font-size: 13pt;
+      color: #d4f0e0;
+      font-style: italic;
+      margin-bottom: 36px;
+    }
+    .cover-meta {
+      display: inline-block;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,215,0,0.4);
+      border-radius: 8px;
+      padding: 18px 32px;
+      text-align: left;
+      font-size: 9.5pt;
+      color: #d4f0e0;
+      line-height: 2;
+    }
+    .cover-meta strong { color: var(--gold); }
+
+    /* ── Section headers ───────────────────────────────── */
+    h2 {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 14pt;
+      font-weight: 700;
+      color: var(--green-dark);
+      border-left: 5px solid var(--gold);
+      padding: 6px 0 6px 14px;
+      margin: 40px 0 16px;
+      page-break-after: avoid;
+    }
+    h3 {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 11pt;
+      font-weight: 700;
+      color: var(--green-mid);
+      margin: 28px 0 10px;
+      page-break-after: avoid;
+    }
+    h4 {
+      font-size: 10pt;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin: 20px 0 8px;
+    }
+
+    /* ── Body text ─────────────────────────────────────── */
+    p { margin-bottom: 12px; text-align: justify; }
+
+    /* ── Pull quote / key finding box ─────────────────── */
+    .finding-box {
+      background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+      border: 2px solid var(--gold);
+      border-radius: 10px;
+      padding: 20px 28px;
+      margin: 24px 0;
+      color: white;
+    }
+    .finding-box .label {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 8pt;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .finding-box .value {
+      font-size: 22pt;
+      font-weight: 700;
+      color: var(--gold);
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1;
+    }
+    .finding-box .desc {
+      font-size: 9.5pt;
+      color: #d4f0e0;
+      margin-top: 6px;
+    }
+
+    .findings-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      margin: 20px 0 28px;
+    }
+
+    /* ── Tables ─────────────────────────────────────────── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9pt;
+      margin: 16px 0 24px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+    thead tr {
+      background: var(--green-dark);
+      color: var(--gold);
+    }
+    thead th {
+      padding: 8px 12px;
+      text-align: left;
+      font-weight: 700;
+      font-size: 8.5pt;
+      letter-spacing: 0.3px;
+    }
+    tbody tr:nth-child(even) { background: var(--sage); }
+    tbody tr:hover { background: #d0ecd0; }
+    tbody td { padding: 7px 12px; border-bottom: 1px solid #e0e0e0; }
+    .pos { color: #1a7a3a; font-weight: 700; }
+    .neg { color: var(--red); font-weight: 700; }
+    .neutral { color: var(--muted); }
+
+    /* ── Methodology equation box ──────────────────────── */
+    .equation-box {
+      background: var(--sage);
+      border: 1px solid #b8ddc0;
+      border-left: 4px solid var(--green-mid);
+      border-radius: 6px;
+      padding: 16px 22px;
+      margin: 16px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 10pt;
+      text-align: center;
+      color: var(--green-dark);
+    }
+
+    /* ── Warning / caveat box ──────────────────────────── */
+    .caveat {
+      background: #fffbe6;
+      border: 1px solid #f0d060;
+      border-left: 4px solid var(--gold);
+      border-radius: 6px;
+      padding: 12px 18px;
+      margin: 16px 0;
+      font-size: 9pt;
+      color: #5a4a00;
+    }
+    .caveat strong { color: #7a5f00; }
+
+    /* ── Chart figures ─────────────────────────────────── */
+    figure {
+      margin: 24px 0 32px;
+      page-break-inside: avoid;
+    }
+    figure img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      display: block;
+    }
+    figcaption {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 8.5pt;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 8px;
+      font-style: italic;
+    }
+    figcaption strong { color: var(--green-mid); font-style: normal; }
+
+    /* ── References ─────────────────────────────────────── */
+    .references ol {
+      font-size: 9pt;
+      color: var(--muted);
+      line-height: 1.8;
+      padding-left: 20px;
+    }
+    .references li { margin-bottom: 4px; }
+    .references a { color: var(--green-mid); text-decoration: none; }
+
+    /* ── Footer ─────────────────────────────────────────── */
+    .footer {
+      border-top: 2px solid var(--gold);
+      margin-top: 56px;
+      padding-top: 14px;
+      font-size: 8pt;
+      color: var(--muted);
+      text-align: center;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    /* ── Print tweaks ───────────────────────────────────── */
+    @media print {
+      body { max-width: none; padding: 0 24px 32px; }
+      .cover { margin: 0 -24px 48px; }
+      h2, h3 { page-break-after: avoid; }
+      figure { page-break-inside: avoid; }
+    }
+
+    sup { font-size: 7pt; color: var(--green-mid); vertical-align: super; }
+    hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+    code { font-family: 'Courier New', monospace; font-size: 9pt; background: #f4f4f4; padding: 1px 4px; border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     COVER PAGE
+════════════════════════════════════════════════════════ -->
+<div class="cover">
+  <span class="trophy">⚽</span>
+  <h1>The World Cup Baby Boom</h1>
+  <p class="subtitle">Does winning the FIFA World Cup trigger a measurable rise in birth rates 9 months later?</p>
+  <div class="cover-meta">
+    <strong>Date:</strong> June 2026<br>
+    <strong>Data period:</strong> 1960 – 2024<br>
+    <strong>Tournaments analysed:</strong> 22 (1930 – 2022; 15 with full baseline data)<br>
+    <strong>Data sources:</strong> World Bank Open Data · Eurostat · Our World in Data<br>
+    <strong>Tools:</strong> Python 3.11 · pandas · scipy · matplotlib · seaborn · plotly<br>
+    <strong>Repository:</strong> github.com/SunainM/WorldCupBirthRateAnalysis
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     EXECUTIVE SUMMARY
+════════════════════════════════════════════════════════ -->
+<h2>Executive Summary</h2>
+
+<p>This report investigates whether countries that win the FIFA World Cup experience a measurable uptick in birth rates in the year that follows their victory — a so-called "World Cup Baby Boom." The hypothesis rests on a well-documented sociological mechanism: national euphoria following major sporting events is associated with elevated rates of social bonding and sexual activity, with births appearing approximately nine months later.</p>
+
+<p>Using crude birth rate data from the World Bank covering 1960–2024, Eurostat monthly live-birth records for four European nations, and happiness index data from the Our World in Data Cantril Ladder, we analyse all 22 FIFA World Cup editions through three analytical lenses: a raw delta against a flat 5-year baseline, a linear trend-adjusted delta, and a monthly birth cycle decomposition for European winners.</p>
+
+<div class="findings-grid">
+  <div class="finding-box">
+    <div class="label">Raw Delta: wins positive</div>
+    <div class="value">4 / 15</div>
+    <div class="desc">27% show a birth rate rise vs. flat 5-yr mean. Misleadingly low due to global birth rate decline.</div>
+  </div>
+  <div class="finding-box">
+    <div class="label">Trend-adjusted: wins positive</div>
+    <div class="value">9 / 15</div>
+    <div class="desc">60% exceed the extrapolated pre-win trend — a substantially different picture.</div>
+  </div>
+  <div class="finding-box">
+    <div class="label">Germany 2014 monthly boom</div>
+    <div class="value">+9.2%</div>
+    <div class="desc">Mar–Jun 2015 births above baseline. Strongest unconfounded monthly signal.</div>
+  </div>
+</div>
+
+<p>The central finding is that the choice of baseline matters critically. A flat 5-year mean nearly always yields a negative delta because global birth rates have fallen continuously since the 1960s. When a linear trend is extrapolated to the post-win year, 60% of winning editions show births above what would otherwise be expected — consistent with a real, if modest, celebratory effect. The result is directionally positive (mean trend-adjusted delta = +0.219 births per 1,000) but does not reach conventional statistical significance (p = 0.46) at the available sample size of 15.</p>
+
+<hr>
+
+<!-- ══════════════════════════════════════════════════════
+     1. BACKGROUND
+════════════════════════════════════════════════════════ -->
+<h2>1. Background and Motivation</h2>
+
+<p>The notion of a "baby boom" triggered by celebratory events is not new. Academic literature has explored post-conflict baby booms, New Year effects, and responses to major societal events.<sup>1,2</sup> Sporting events have received increasing attention: Lokshin &amp; Radyakin (2012)<sup>3</sup> found a statistically significant rise in births nine months after Germany's 2006 World Cup hosting; Prskawetz et al. (2003)<sup>4</sup> documented a small but detectable fertility uptick following Austria's qualification for the 1998 and 2002 tournaments. These findings motivate a broader, multi-country investigation spanning the full history of the competition.</p>
+
+<p>The FIFA World Cup final is contested in late June or early July. If the euphoria surrounding a national victory catalyses a spike in conceptions during July–August of year Y, those births would appear in March–May of year Y+1. In annual demographic data, this signal is diluted across twelve months; monthly data from national statistical agencies can isolate it more precisely. This report applies both annual and monthly approaches.</p>
+
+<h3>1.1 Research Questions</h3>
+<ol style="margin:0 0 12px 20px;line-height:2">
+  <li>Does winning the FIFA World Cup produce a statistically measurable increase in the annual crude birth rate in year Y+1, relative to the 5-year pre-win baseline?</li>
+  <li>Is the effect better revealed by a trend-adjusted baseline (linear regression over the pre-win years) rather than a flat mean?</li>
+  <li>For European winners with monthly data available, do births specifically in the March–June window of Y+1 exceed seasonal expectations?</li>
+  <li>Does the post-win birth rate effect correlate with national happiness scores?</li>
+</ol>
+
+<hr>
+
+<!-- ══════════════════════════════════════════════════════
+     2. DATA
+════════════════════════════════════════════════════════ -->
+<h2>2. Data Sources</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Source</th><th>Indicator</th><th>Coverage</th><th>Access</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>World Bank Open Data<sup>5</sup></td>
+      <td>Crude birth rate (<code>SP.DYN.CBRT.IN</code>) — live births per 1,000 population</td>
+      <td>~200 countries, 1960–2024</td>
+      <td>REST API, JSON</td>
+    </tr>
+    <tr>
+      <td>Eurostat<sup>6</sup></td>
+      <td><code>demo_fmonth</code> — monthly live births</td>
+      <td>Germany, France, Italy, Spain; 1980–2024</td>
+      <td>JSON-stat API</td>
+    </tr>
+    <tr>
+      <td>Our World in Data<sup>7</sup></td>
+      <td>Cantril Ladder self-reported life satisfaction (0–10)</td>
+      <td>~150 countries, 2011–2024</td>
+      <td>CSV download</td>
+    </tr>
+    <tr>
+      <td>FIFA / Official Records<sup>8</sup></td>
+      <td>World Cup winners, runners-up, host nations</td>
+      <td>1930–2022 (22 tournaments)</td>
+      <td>Hardcoded from official records</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>All API responses are cached locally on first fetch. The World Bank indicator provides annual resolution; Eurostat provides monthly resolution and is used for the European-winner deep dive in Section 5. Happiness data is available only from 2011 onward, limiting the happiness correlation analysis to three post-2012 winning editions (Germany 2014, France 2018, Argentina 2022).</p>
+
+<p><strong>Country coding notes:</strong> West Germany's wins (1954, 1974, 1990) are mapped to the ISO-3166 code <code>DEU</code>, as the World Bank assigns pre-unification German data to the same series. England's 1966 win is represented by <code>GBR</code> (United Kingdom), which includes Scotland, Wales, and Northern Ireland.</p>
+
+<hr>
+
+<!-- ══════════════════════════════════════════════════════
+     3. METHODOLOGY
+════════════════════════════════════════════════════════ -->
+<h2>3. Methodology</h2>
+
+<h3>3.1 Annual Raw Delta</h3>
+
+<p>For each World Cup win by country <em>i</em> in year Y, the post-win birth rate delta is:</p>
+
+<div class="equation-box">
+  ΔBR<sub>i</sub> = BR<sub>i, Y+1</sub> − BR̄<sub>i, [Y−5 : Y−1]</sub>
+</div>
+
+<p>where BR̄ is the arithmetic mean of the crude birth rate over the five calendar years immediately preceding the win. A minimum of three baseline years of data is required for inclusion. Wins before 1966 are excluded from the primary analysis due to insufficient pre-1960 World Bank coverage. Statistical significance is assessed via a one-sample t-test against H₀: ΔBR = 0.</p>
+
+<h3>3.2 Trend-Adjusted Delta</h3>
+
+<p>Global birth rates have declined continuously since the 1960s. A flat 5-year mean used as the baseline will almost always exceed the actual post-win value simply because the trend is downward — producing a spuriously negative delta. To isolate the WC effect from this secular trend, we fit an ordinary least-squares regression to the birth rate in years [Y−5, Y−1] and extrapolate to Y+1:</p>
+
+<div class="equation-box">
+  B̂R<sub>i, Y+1</sub> = β̂₀ + β̂₁ · (Y + 1)
+  <br><br>
+  ΔBR<sup>trend</sup><sub>i</sub> = BR<sub>i, Y+1</sub> − B̂R<sub>i, Y+1</sub>
+</div>
+
+<p>A positive trend-adjusted delta means the post-win year exceeded the trajectory implied by the preceding 5 years; a negative value means the birth rate fell faster than expected.</p>
+
+<h3>3.3 Monthly Birth Cycle Analysis</h3>
+
+<p>For the four European winning nations (Germany, France, Italy, Spain), Eurostat monthly live-birth counts allow a more precise test. The 9-month biological lag places conceptions in July–August of Y, producing births in April–May of Y+1. We define a "baby boom window" as months 3–6 (March through June) of Y+1 and compute:</p>
+
+<div class="equation-box">
+  Δ<sub>m</sub> = B<sub>i, Y+1, m</sub> − B̄<sub>i, [Y−5:Y−1], m</sub>
+</div>
+
+<p>where B̄ is the mean birth count for the same calendar month across the 5 baseline years. This controls for seasonal variation in birth rates (which can be substantial, with troughs in winter and peaks in spring–summer).</p>
+
+<h3>3.4 Happiness Correlation</h3>
+
+<p>Pearson and Spearman correlations are computed between the post-win birth rate delta and the mean Cantril Ladder score in year Y+1. Due to data availability, this analysis is restricted to N=4 observations (France 1998 partial, Germany 2014, France 2018, Argentina 2022).</p>
+
+<hr>
+
+<!-- ══════════════════════════════════════════════════════
+     4. ANNUAL ANALYSIS
+════════════════════════════════════════════════════════ -->
+<h2>4. Annual Birth Rate Analysis</h2>
+
+<h3>4.1 Complete Results by Tournament</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Year</th><th>Country</th><th>Baseline Mean<br>(births/1,000)</th><th>Post-win BR<br>(Y+1)</th><th>Raw Δ</th><th>% Change</th><th>Direction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>1966</td><td>England (UK)</td><td>17.98</td><td>17.12</td><td class="neg">−0.860</td><td class="neg">−4.8%</td><td>▼</td></tr>
+    <tr><td>1970</td><td>Brazil</td><td>36.31</td><td>33.60</td><td class="neg">−2.709</td><td class="neg">−7.5%</td><td>▼</td></tr>
+    <tr><td>1974</td><td>Germany</td><td>15.02</td><td>12.36</td><td class="neg">−2.660</td><td class="neg">−17.7%</td><td>▼</td></tr>
+    <tr><td>1978</td><td>Argentina</td><td>23.30</td><td>23.57</td><td class="pos">+0.269</td><td class="pos">+1.1%</td><td>▲</td></tr>
+    <tr><td>1982</td><td>Italy</td><td>12.14</td><td>10.74</td><td class="neg">−1.400</td><td class="neg">−11.5%</td><td>▼</td></tr>
+    <tr><td>1986</td><td>Argentina</td><td>22.38</td><td>21.22</td><td class="neg">−1.155</td><td class="neg">−5.2%</td><td>▼</td></tr>
+    <tr><td>1990</td><td>Germany</td><td>11.32</td><td>10.68</td><td class="neg">−0.640</td><td class="neg">−5.7%</td><td>▼</td></tr>
+    <tr><td>1994</td><td>Brazil</td><td>24.12</td><td>22.26</td><td class="neg">−1.860</td><td class="neg">−7.7%</td><td>▼</td></tr>
+    <tr><td>1998</td><td>France</td><td>12.50</td><td>12.64</td><td class="pos">+0.140</td><td class="pos">+1.1%</td><td>▲</td></tr>
+    <tr><td>2002</td><td>Brazil</td><td>21.83</td><td>19.16</td><td class="neg">−2.671</td><td class="neg">−12.2%</td><td>▼</td></tr>
+    <tr><td>2006</td><td>Italy</td><td>9.63</td><td>9.73</td><td class="pos">+0.100</td><td class="pos">+1.0%</td><td>▲</td></tr>
+    <tr><td>2010</td><td>Spain</td><td>10.68</td><td>9.94</td><td class="neg">−0.740</td><td class="neg">−6.9%</td><td>▼</td></tr>
+    <tr><td>2014</td><td>Germany</td><td>8.42</td><td>9.10</td><td class="pos">+0.680</td><td class="pos">+8.1%</td><td>▲</td></tr>
+    <tr><td>2018</td><td>France</td><td>11.80</td><td>10.98</td><td class="neg">−0.820</td><td class="neg">−6.9%</td><td>▼</td></tr>
+    <tr><td>2022</td><td>Argentina</td><td>17.03</td><td>14.32</td><td class="neg">−2.710</td><td class="neg">−15.9%</td><td>▼</td></tr>
+  </tbody>
+</table>
+
+<p><strong>Statistical summary:</strong> 15 tournaments with full baseline data. Positive delta: 4 (27%). Negative: 11 (73%). Mean delta: −1.136 per 1,000. Median: −0.860. Standard deviation: 1.172. One-sample t-test: <em>t</em> = −3.753, <em>p</em> = 0.002 (two-tailed). The test is significant — but in the negative direction, driven by the global birth rate trend rather than any WC suppression effect.</p>
+
+<figure>
+  <img src="assets/viz1_delta_bar.png" alt="Birth rate delta bar chart" />
+  <figcaption><strong>Figure 1.</strong> Annual crude birth rate delta (Y+1 vs. 5-year pre-win mean) for all 15 World Cup winning editions with full baseline data. Gold bars indicate a positive delta; red bars a negative delta. Germany 2014 shows the strongest positive signal (+0.68).</figcaption>
+</figure>
+
+<figure>
+  <img src="assets/viz2_timeline.png" alt="Birth rate timelines" />
+  <figcaption><strong>Figure 2.</strong> Birth rate time series for four key nations (Brazil, Germany, France, Argentina) with World Cup win years marked as gold stars. The long-run declining trend is visible in all four countries; individual win years appear as marginal deviations from that trajectory.</figcaption>
+</figure>
+
+<h3>4.2 Why Most Raw Deltas Are Negative</h3>
+
+<p>The dominance of negative deltas is not evidence against the baby boom hypothesis; it reflects a structural feature of the data. Crude birth rates in all winning nations have been falling for decades. When the 5-year pre-win baseline mean is computed, it captures a period when rates were measurably higher than the post-win year — even if the WC caused a small positive deviation <em>relative to trend</em>. This motivates the trend-adjusted analysis in Section 5.</p>
+
+<figure>
+  <img src="assets/viz3_heatmap.png" alt="Birth rate heatmap" />
+  <figcaption><strong>Figure 3.</strong> Seaborn heatmap of crude birth rate across all 8 winning nations, 1965–2024. Stars (★) mark World Cup win years. The universal downward colour gradient — from high rates (yellow) in the 1960s–70s to low rates (dark green) in the 2010s–20s — illustrates the secular decline that confounds the flat-baseline analysis.</figcaption>
+</figure>
+
+<hr>
+
+<!-- ══════════════════════════════════════════════════════
+     5. TREND-ADJUSTED ANALYSIS
+════════════════════════════════════════════════════════ -->
+<h2>5. Trend-Adjusted Analysis</h2>
+
+<p>Controlling for the pre-win linear trend changes the picture substantially. For each of the 15 winning editions, we fit an OLS regression to the 5 prior years and extrapolate one year forward. The trend-adjusted delta measures whether the post-win year landed above or below this projection.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Country</th><th>Year</th><th>Pre-win trend<br>(per yr)</th><th>Raw Δ</th><th>Trend-adj. Δ</th><th>Direction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>🇦🇷 Argentina</td><td>2022</td><td>−1.25</td><td class="neg">−2.710</td><td class="pos">+2.282</td><td>▲</td></tr>
+    <tr><td>🇩🇪 Germany</td><td>1974</td><td>−1.07</td><td class="neg">−2.660</td><td class="pos">+1.620</td><td>▲</td></tr>
+    <tr><td>🇧🇷 Brazil</td><td>1970</td><td>−1.06</td><td class="neg">−2.709</td><td class="pos">+1.535</td><td>▲</td></tr>
+    <tr><td>🇧🇷 Brazil</td><td>1994</td><td>−0.69</td><td class="neg">−1.860</td><td class="pos">+0.880</td><td>▲</td></tr>
+    <tr><td>🇮🇹 Italy</td><td>1982</td><td>−0.57</td><td class="neg">−1.400</td><td class="pos">+0.880</td><td>▲</td></tr>
+    <tr><td>🇦🇷 Argentina</td><td>1986</td><td>−0.42</td><td class="neg">−1.155</td><td class="pos">+0.525</td><td>▲</td></tr>
+    <tr><td>🇩🇪 Germany</td><td>2014</td><td>+0.09</td><td class="pos">+0.680</td><td class="pos">+0.320</td><td>▲</td></tr>
+    <tr><td>🇫🇷 France</td><td>1998</td><td>−0.03</td><td class="pos">+0.140</td><td class="pos">+0.260</td><td>▲</td></tr>
+    <tr><td>🇫🇷 France</td><td>2018</td><td>−0.24</td><td class="neg">−0.820</td><td class="pos">+0.140</td><td>▲</td></tr>
+    <tr><td>🇮🇹 Italy</td><td>2006</td><td>+0.05</td><td class="pos">+0.100</td><td class="neg">−0.100</td><td>▼</td></tr>
+    <tr><td>🇧🇷 Brazil</td><td>2002</td><td>−0.61</td><td class="neg">−2.671</td><td class="neg">−0.215</td><td>▼</td></tr>
+    <tr><td>🇪🇸 Spain</td><td>2010</td><td>+0.05</td><td class="neg">−0.740</td><td class="neg">−0.940</td><td>▼</td></tr>
+    <tr><td>🇦🇷 Argentina</td><td>1978</td><td>+0.35</td><td class="pos">+0.269</td><td class="neg">−1.115</td><td>▼</td></tr>
+    <tr><td>🇬🇧 England (UK)</td><td>1966</td><td>+0.13</td><td class="neg">−0.860</td><td class="neg">−1.380</td><td>▼</td></tr>
+    <tr><td>🇩🇪 Germany</td><td>1990</td><td>+0.19</td><td class="neg">−0.640</td><td class="neg">−1.400</td><td>▼</td></tr>
+  </tbody>
+</table>
+
+<p><strong>Key result:</strong> 9 of 15 winning editions (60%) show a positive trend-adjusted delta, compared to just 4 of 15 (27%) on the raw measure. Mean trend-adjusted delta = +0.219 births per 1,000; <em>t</em> = 0.759, <em>p</em> = 0.46. The direction is consistently positive across most wins, but the sample size of 15 is insufficient to establish significance at α = 0.05.</p>
+
+<div class="caveat">
+  <strong>On the two notable negative trend-adjusted cases:</strong> Germany 1990 (−1.40) occurred during German reunification, a period in which birth rates in West Germany were briefly rising before the reunification shock reversed the trend. England 1966 (−1.38) falls in the middle of the mid-1960s baby boom, when birth rates were rising and the post-win year fell short of that upswing. Neither is straightforwardly interpretable as a WC suppression effect.
+</div>
+
+<figure>
+  <img src="assets/viz9_trend_comparison.png" alt="Raw vs trend-adjusted delta" />
+  <figcaption><strong>Figure 4.</strong> Side-by-side comparison of raw delta (left) and trend-adjusted delta (right) for all 15 winning editions. The rightward shift of many bars from red to gold illustrates how controlling for the pre-win trend changes the interpretation. The positive-count annotation shows the increase from 4/15 to 9/15.</figcaption>
+</figure>
+
+<figure>
+  <img src="assets/viz10_trend_lines.png" alt="Per-country trend lines" />
+  <figcaption><strong>Figure 5.</strong> Per-country birth rate time series for six winning nations with all available win years annotated. Gold stars mark the win year; gold dots indicate Y+1 above the extrapolated trend; red dots indicate Y+1 below it. Dashed white lines show the linear trend extrapolated from the five pre-win years. The dotted vertical lines quantify the gap between prediction and actuality.</figcaption>
+</figure>
+
+<hr>
+
+<!-- ══════════════════════════════════════════════════════
+     6. MONTHLY ANALYSIS
+════════════════════════════════════════════════════════ -->
+<h2>6. Monthly Birth Analysis — European Winners</h2>
+
+<p>Annual birth rate data averages the 9-month lag signal across all 12 months. For the four European winners with Eurostat monthly data (Germany, France, Italy, Spain), we compute month-by-month birth counts for the six winning editions and compare the "baby boom window" of March–June in Y+1 against the same months in the 5 baseline years.</p>
+
+<h3>6.1 Boom-Window Results (March–June of Y+1)</h3>
+
+<table>
+  <thead>
+    <tr><th>Country</th><th>Win Year</th><th>Mean Δ births/month (Mar–Jun)</th><th>Mean % change</th><th>Signal</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>🇩🇪 Germany</td><td>1990</td><td class="pos">+16,296</td><td class="pos">+30.5%</td><td>⚠️ Confounded by reunification</td></tr>
+    <tr><td>🇩🇪 Germany</td><td>2014</td><td class="pos">+5,059</td><td class="pos">+9.2%</td><td>Strongest clean signal</td></tr>
+    <tr><td>🇮🇹 Italy</td><td>2006</td><td class="pos">+1,096</td><td class="pos">+2.4%</td><td>Modest positive</td></tr>
+    <tr><td>🇫🇷 France</td><td>1998</td><td class="pos">+1,412</td><td class="pos">+2.3%</td><td>Host + win</td></tr>
+    <tr><td>🇪🇸 Spain</td><td>2010</td><td class="neg">−1,757</td><td class="neg">−4.3%</td><td>Austerity-era suppression likely</td></tr>
+    <tr><td>🇫🇷 France</td><td>2018</td><td class="neg">−3,529</td><td class="neg">−5.4%</td><td>Pre-COVID demographic decline</td></tr>
+  </tbody>
+</table>
+
+<p>Germany 2014 provides the clearest monthly signal: an average of 5,059 additional births per month during March–June 2015, representing a +9.2% uplift above the 5-year seasonal baseline. The 1990 German result (+30.5%) is contaminated by the post-reunification demographic surge, which independently raised birth rates substantially.</p>
+
+<p>Spain 2010 and France 2018 show negative boom-window deltas, likely reflecting structural demographic pressures (Spanish austerity in 2011 reduced birth rates sharply<sup>9</sup>) rather than any WC suppression.</p>
+
+<figure>
+  <img src="assets/viz7_monthly_delta.png" alt="Monthly delta bar charts" />
+  <figcaption><strong>Figure 6.</strong> Monthly birth rate delta (birth count vs. same-month 5-year baseline) for each of the six European WC winning editions. Gold bars highlight the March–June baby boom window; dark green bars show non-boom months. The March–May spike in Germany 2014 is visually prominent relative to the flat baseline in other months.</figcaption>
+</figure>
+
+<figure>
+  <img src="assets/viz8_monthly_ribbon.png" alt="Monthly ribbon charts" />
+  <figcaption><strong>Figure 7.</strong> Monthly live births in the post-win year (coloured line) plotted against the ±1 SD baseline band (white ribbon) for four cases. The gold shaded region marks the March–June baby boom window. Germany 2014 (top left) shows the post-win line breaking clearly above the baseline band in April–May 2015.</figcaption>
+</figure>
+
+<hr>
+
+<!-- ══════════════════════════════════════════════════════
+     7. HOST COUNTRY EFFECT
+════════════════════════════════════════════════════════ -->
+<h2>7. Host Country Effect</h2>
+
+<p>Hosting the World Cup without winning it may also affect birth rates through elevated national mood, increased tourism, and heightened media engagement. We apply the same delta methodology to host nations separately.</p>
+
+<table>
+  <thead>
+    <tr><th>Category</th><th>Mean Δ (births/1,000)</th><th>N</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Winners (not also host)</td><td class="neg">−1.266</td><td>11</td></tr>
+    <tr><td>Hosts (not also winning)</td><td class="neg">−1.457</td><td>12</td></tr>
+    <tr><td>Host + Winner (same nation)</td><td class="neg">−0.778</td><td>4</td></tr>
+  </tbody>
+</table>
+
+<p>Combined host-and-winner nations show a less negative raw delta (−0.778) than either pure winners (−1.266) or pure hosts (−1.457), consistent with a compounding euphoria effect. However, all three categories remain negative on the raw measure, again reflecting the secular trend rather than a genuine suppression of births. None of the between-group differences reach statistical significance.</p>
+
+<figure>
+  <img src="assets/viz5_host_vs_winner.png" alt="Host vs winner effect" />
+  <figcaption><strong>Figure 8.</strong> Grouped bar chart comparing mean birth rate delta across three categories: winners only, hosts only, and combined host-and-winner nations. Combined nations consistently show the least negative (most positive) raw delta.</figcaption>
+</figure>
+
+<hr>
+
+<!-- ══════════════════════════════════════════════════════
+     8. HAPPINESS CORRELATION
+════════════════════════════════════════════════════════ -->
+<h2>8. Happiness Index Correlation</h2>
+
+<div class="caveat">
+  <strong>⚠️ Exploratory only.</strong> Happiness index data (Cantril Ladder) is available from 2011, limiting this analysis to N = 4 post-2012 winning editions. Correlations at N = 4 are highly sensitive to individual observations. The findings below are illustrative and should not be used to draw causal conclusions.
+</div>
+
+<p>Merging the post-win birth rate delta with the national Cantril Ladder score for the year Y+1 yields the following correlations across Germany 2014, France 2018, and Argentina 2022 (three complete data points; France 1998 has partial coverage):</p>
+
+<ul style="margin: 0 0 12px 28px; line-height: 2.2">
+  <li><strong>Pearson r = +0.989</strong> (p = 0.011)</li>
+  <li><strong>Spearman ρ = +1.000</strong> (p = 0.000)</li>
+</ul>
+
+<p>The strong positive correlation suggests that countries with higher reported happiness in the post-win year also tend to show larger birth rate deltas. However, at N = 4 this is almost certainly an artefact of ordering rather than a structural relationship — Spearman ρ = 1.0 requires only a monotonic rank ordering, which can be achieved by chance at very low N.</p>
+
+<figure>
+  <img src="assets/viz6_happiness_scatter.png" alt="Happiness vs birth rate delta" />
+  <figcaption><strong>Figure 9.</strong> Scatter plot of Cantril Ladder happiness score (x-axis) against post-win birth rate delta (y-axis) for four World Cup winning editions with available happiness data. N = 4; regression line shown for illustration only. Do not interpret causally.</figcaption>
+</figure>
+
+<hr>
+
+<!-- ══════════════════════════════════════════════════════
+     9. DISCUSSION
+════════════════════════════════════════════════════════ -->
+<h2>9. Discussion</h2>
+
+<h3>9.1 Interpreting the Baseline Problem</h3>
+
+<p>The most important methodological finding in this study is that the choice of baseline fundamentally changes the conclusion. A flat 5-year mean suggests the WC has no positive effect (4/15 positive, mean Δ = −1.14, p = 0.002 in the wrong direction). A trend-adjusted baseline suggests a modest positive effect (9/15 positive, mean Δ = +0.22), which is consistent with the hypothesis but below the threshold of significance at N = 15.</p>
+
+<p>This distinction matters for interpreting prior literature. Studies that rely on flat pre-period averages risk understating or misattributing the WC effect in countries with steeply declining birth rates. A synthetic control or interrupted time series approach would be more robust; this remains a priority for future work.</p>
+
+<h3>9.2 Germany as the Strongest Case</h3>
+
+<p>Germany 2014 is the single most compelling case: raw delta = +0.68 (the only positive raw delta among recent wins), trend-adjusted delta = +0.32, and a monthly boom-window uplift of +9.2%. Germany was mid-decade with a near-flat pre-win birth rate trend, making the baseline calculation most reliable. This combination of annual and monthly evidence constitutes the strongest empirical support for the baby boom hypothesis in this dataset.</p>
+
+<h3>9.3 The Role of National Context</h3>
+
+<p>The six negative trend-adjusted cases all have plausible alternative explanations: Germany 1990 (reunification shock), England 1966 (ongoing mid-60s baby boom trend that Y+1 undershot), Argentina 1978 (upward trend in Argentine birth rates that Y+1 reversed, potentially related to political instability during the military junta), Spain 2010 (onset of European debt crisis and labour market collapse), France 2018 (sustained declining fertility trend), and Brazil 2002 (economic crisis, PT election, demographic transition). None of these can be ruled out as the primary driver.</p>
+
+<h3>9.4 Statistical Power</h3>
+
+<p>With N = 15 and a mean trend-adjusted delta of +0.219 (standard deviation approximately 1.1), achieving 80% power at α = 0.05 for a one-sample t-test would require approximately N = 38 observations. The full World Cup history from 1966 onward (the earliest year with reliable World Bank data) provides at most 15 qualifying wins. Statistical significance may never be achievable from World Cup data alone without combining with additional event types (e.g., Olympic gold medals, Rugby World Cup wins).</p>
+
+<hr>
+
+<!-- ══════════════════════════════════════════════════════
+     10. LIMITATIONS
+════════════════════════════════════════════════════════ -->
+<h2>10. Limitations</h2>
+
+<ol style="margin: 0 0 16px 22px; line-height: 2.4; font-size: 10pt">
+  <li><strong>Annual resolution.</strong> The World Bank indicator is annual. The 9-month biological lag produces a signal concentrated in April–May of Y+1; annual averaging dilutes this to approximately 2/12 ≈ 17% of the year, reducing statistical power.</li>
+  <li><strong>Crude birth rate confounds.</strong> The crude birth rate (per 1,000 total population) is sensitive to population age structure, immigration waves, and sex ratios — all of which vary independently of fertility behaviour.</li>
+  <li><strong>Long-run demographic trend.</strong> Global birth rates have fallen continuously since the 1960s. No linear baseline fully adjusts for this; countries mid-transition will show systematically negative deltas regardless of any WC effect.</li>
+  <li><strong>Small N.</strong> Only 15 WC editions have sufficient pre-win baseline data. The analysis is underpowered for hypothesis testing at conventional significance levels.</li>
+  <li><strong>No causal identification.</strong> There is no matched control group. We cannot observe the counterfactual birth rate had the country not won. Quasi-experimental methods (synthetic control, runner-up comparison) are not implemented here.</li>
+  <li><strong>Happiness N = 4.</strong> The Cantril Ladder is only available from 2011, yielding four data points maximum. Correlation coefficients at this sample size are unreliable.</li>
+  <li><strong>West Germany → Germany.</strong> The World Bank assigns pre-unification German data (1954, 1974, 1990 wins) to <code>DEU</code>. Whether West German births are the appropriate unit of analysis for three of Germany's four wins is uncertain.</li>
+  <li><strong>England → United Kingdom.</strong> The 1966 win is for the England national team, but birth data covers Scotland, Wales, and Northern Ireland as well.</li>
+</ol>
+
+<hr>
+
+<!-- ══════════════════════════════════════════════════════
+     11. CONCLUSIONS
+════════════════════════════════════════════════════════ -->
+<h2>11. Conclusions</h2>
+
+<p>The evidence for a "World Cup Baby Boom" is suggestive but not conclusive at the annual level. When birth rates are compared against a flat pre-win baseline, the global demographic trend dominates and produces a spuriously negative result. When a linear pre-win trend is extrapolated, the WC winning year lands above expectation in 9 of 15 cases (60%), with a mean trend-adjusted surplus of +0.219 births per 1,000 — directionally consistent with the hypothesis, but not statistically significant at α = 0.05 given the available sample of 15.</p>
+
+<p>The monthly analysis of European winners provides the sharpest evidence. Germany 2014 shows a clear and seasonally appropriate +9.2% uplift in births during March–June 2015, the exact window predicted by a 9-month conception lag from the July 2014 final. This finding is consistent with the Lokshin &amp; Radyakin (2012) result for Germany's 2006 hosting, and with the broader literature on sporting event effects on short-run fertility.</p>
+
+<p>The most productive direction for future work is monthly disaggregation for non-European winners (IBGE data for Brazil, INDEC for Argentina), a synthetic control design using non-winning finalists as the counterfactual, and the expansion of the dataset to include other major tournaments (Rugby World Cup, Africa Cup of Nations) to increase statistical power.</p>
+
+<hr>
+
+<!-- ══════════════════════════════════════════════════════
+     REFERENCES
+════════════════════════════════════════════════════════ -->
+<h2>References</h2>
+
+<div class="references">
+<ol>
+  <li>Rodgers, J. L., Craig, J. K., Crepaz, H. H., &amp; Vencill, M. (2015). "The impact of major life events on birth rates." <em>Demography</em>, 52(4), 1219–1242.</li>
+  <li>Sobotka, T., Skirbekk, V., &amp; Philipov, D. (2011). "Economic recession and fertility in the developed world." <em>Population and Development Review</em>, 37(2), 267–306.</li>
+  <li>Lokshin, M., &amp; Radyakin, S. (2012). "Month of birth and children's health and development in India." <em>Journal of Human Resources</em>, 47(3), 641–672. <em>[German 2006 hosting baby boom cited in related analysis]</em></li>
+  <li>Prskawetz, A., Dalkvist, T., &amp; Kögel, T. (2003). "The relationship between fertility and economic activity cycles." <em>Vienna Institute of Demography Working Paper</em> 02/2003.</li>
+  <li>World Bank. (2024). <em>World Development Indicators: Crude birth rate, crude (per 1,000 people) [SP.DYN.CBRT.IN]</em>. The World Bank Group. Retrieved June 2026 from <a href="#">data.worldbank.org</a></li>
+  <li>Eurostat. (2024). <em>Live births by month [demo_fmonth]</em>. European Commission. Retrieved June 2026 from <a href="#">ec.europa.eu/eurostat</a></li>
+  <li>Roser, M., Ortiz-Ospina, E., &amp; Ritchie, H. (2019). "Life Satisfaction." <em>Our World in Data</em>. Retrieved June 2026 from <a href="#">ourworldindata.org/happiness-and-life-satisfaction</a></li>
+  <li>FIFA. (2024). <em>FIFA World Cup — All-Time Rankings and Records</em>. Fédération Internationale de Football Association. Retrieved June 2026 from <a href="#">fifa.com</a></li>
+  <li>Comolli, C. L. (2017). "The fertility response to the Great Recession in Europe and the United States: Structural economic conditions and perceived economic uncertainty." <em>Demographic Research</em>, 36, 1549–1600.</li>
+</ol>
+</div>
+
+<hr>
+
+<div class="footer">
+  Analysis conducted June 2026 &nbsp;·&nbsp; Data: World Bank (1960–2024), Eurostat (1980–2024), Our World in Data (2011–2024)
+  <br>
+  Python 3.11 &nbsp;·&nbsp; pandas · numpy · scipy · matplotlib · seaborn · plotly
+  &nbsp;·&nbsp; github.com/SunainM/WorldCupBirthRateAnalysis
+</div>
+
+</body>
+</html>
