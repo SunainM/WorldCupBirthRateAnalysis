@@ -21,9 +21,12 @@ data/raw/*.json
 data/raw/*.xlsx
 data/raw/*.parquet
 
-# Export outputs
+# Export outputs (notebook artefacts)
 *.pdf
 *.html
+# Exception: standalone research report
+!worldcup_baby_boom_report.pdf
+!worldcup_baby_boom_report.html
 
 # OS
 .DS_Store
